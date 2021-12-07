@@ -49,8 +49,14 @@ def data_init():
             population.append(td1['Population'])
             density.append(td1['Density'])
             land_area.append(td1['Land_Area'])
-            fert_rate.append(td1['Fert_Rate'])
-            urban_pop.append(td1['Urban_Pop'])
+            if (td1['Fert_Rate'] == 'N.A.'):
+                fert_rate.append(0.0)
+            else: 
+                fert_rate.append(float(td1['Fert_Rate']))
+            if (td1['Urban_Pop'] == 'N.A.'):
+                urban_pop.append(0)
+            else: 
+                urban_pop.append(((float)(td1['Urban_Pop'][0:len(td1['Urban_Pop'])-2])))
             Years.append(obj['Year'])
             deaths.append(obj['Deaths'])
             household.append(obj['Household'])
@@ -64,18 +70,18 @@ def data_init():
         'Coutry Code': code,
         'Region': region,
         'Sub-Region': sub_region,
-        'Population': population,
-        'Density': density,
-        'Land Area': land_area,
-        'Fert Rate': fert_rate,    
-        'Urban Pop': urban_pop,
-        'Years': Years,
-        'Deaths': deaths,
-        'Household Pollution': household,
-        'Ambient Matter Pollution': ambient_matter,
-        'Ambient Ozone Pollution': ambient_ozone,
-        'Air Pollution': air_polution,
-        'Outdoor Air Pollution': outdoor_air_pol
+        'Population': population, #int
+        'Density': density, #int
+        'Land Area': land_area, #int
+        'Fert Rate': fert_rate,  #percentage
+        'Urban Pop': urban_pop, #percentage
+        'Years': Years, #category
+        'Deaths': deaths, #int
+        'Household Pollution': household,  #float
+        'Ambient Matter Pollution': ambient_matter, #float
+        'Ambient Ozone Pollution': ambient_ozone, #float
+        'Air Pollution': air_polution, #float
+        'Outdoor Air Pollution': outdoor_air_pol #float
     })
     return df
 if __name__ == '__main__':
